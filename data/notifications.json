@@ -1,0 +1,49 @@
+{
+  "abare": [
+    {
+      "type": "like",
+      "user": "abare",
+      "text": "icha liked your post"
+    },
+    {
+      "type": "like",
+      "user": "abare",
+      "text": "raihan liked your post"
+    }
+  ],
+  "icha": [
+    {
+      "type": "like",
+      "user": "icha",
+      "text": "faiz liked your post"
+    },
+    {
+      "type": "like",
+      "user": "icha",
+      "text": "abare liked your post"
+    },
+    {
+      "type": "message",
+      "user": "icha",
+      "text": "message from abare: weekend jalan ke ..."
+    }
+  ],
+  "faiz": [
+    {
+      "type": "like",
+      "user": "faiz",
+      "text": "icha liked your post"
+    }
+  ],
+  "raihan": [
+    {
+      "type": "like",
+      "user": "raihan",
+      "text": "agra liked your post"
+    }
+  ],
+  "bram": [],
+  "ichan": [],
+  "gea": [],
+  "ali": []
+}

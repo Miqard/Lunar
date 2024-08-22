@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ============================================================================================== HEAD -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+      
+  .logo-container {
+        position: fixed;
+        top: 20px;
+        left: 10rem;
+        z-index: 1000;
+    }
+  .login-container {
+      position: fixed;
+      top: 50px;
+      right: 50px; /* Adjust the right value to position the login button */
+      z-index: 1000; /* Ensure the login button is above other elements */
+      border: 5px solid #313232;
+      text-align: center;
+      padding: 20px;
+      border-radius: 0%;
+      width: 250px;
+    }
+    .login-text {
+      margin-bottom: 20px;
+      font-weight:normal;
+      font-size: 20px;
+    }
+    .login-button {
+      padding: 8px 16px;
+      background-color: #79848f;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: normal;
+      font-size: 18px;
+    }
+  .trending-container{
+        display: none;
+        position: fixed;
+        top: 100px; /* Adjust the top value to move the login/trending container down by 200px */
+        left: 350px; /* Adjust the right value to position the login/trending container */
+        z-index: 1000; /* Ensure the login/trending container is above other elements */
+        text-align: left; /* Center-align the text */
+        border: 5px solid #313232; /* Add a 1px solid border */
+        padding-right: 10px;
+        padding-top: 15px;
+        padding-bottom: 20px;
+        padding-left: 15px;
+        width: 250px; /* Fixed width for the container */
+        border-radius: 10%;
+      }
+      .trending {
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 25px;
+        border-bottom: 2px solid #313232;
+        padding-bottom: 10px;
+      }
+      .trending-title{
+          color: #5F5F5F;
+      }
+      .trending-item{
+          margin-bottom: 15px;
+          font-size: 20px;
+          cursor: pointer;
+      }
+    .post {
+        border: transparent;
+        padding: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        position: relative;
+        border-bottom: 1px solid #313232;
+        align-items: flex-start;
+      }
+      .post-info {
+        display: flex;
+        /* Align items to the start (left) */
+        margin-bottom: 10px;
+      }
+      .user-image {
+        border-radius: 5%;
+        margin-right: 20px;
+        padding: 0px;
+        border: 1.5px solid white;
+        width: 50px; /* Adjust the width to make the image smaller */
+        height: 50px; /* Adjust the height accordingly */
+      }
+      .post-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Align items to the start (left) */
+      }
+      .post-name {
+        font-weight: bold;
+        margin-bottom: 2px; /* Add margin between name and description */
+      }
+      .post-time {
+        width: 100%;
+        text-align: right;
+        font-size: 0.9em;
+        margin-top: -5px;
+        margin-bottom: 10px;
+      }
+      .post-image {
+        max-width: 90%;
+        align-items: end;
+      }
+      .post-video {
+        max-width: 100%;
+        align-items: end;
+      }
+      .user-profile-pic {
+          border-radius: 0%;
+          margin-right: 20px;
+          padding: 0px;
+          border: 2px solid white;
+          width: 50px; /* Adjust the width to make the image smaller */
+          height: 50px; /* Adjust the height accordingly */
+          align-items: flex-start;
+          margin-left: 10px;
+      }
+      .post-input {
+        flex-grow: 1;
+        padding: 20px;
+        border: 5px transparent;
+        background-color: transparent;
+        width: 350px; /* Adjust the width to make the image smaller */
+        border-radius: 4px;
+        margin-right: 10px;
+        height: 20px;
+        color: white;
+      }
+      .doc-input {
+        padding: 8px;
+        background-color: #515232;
+        color: #fff;
+        border: 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 10px;
+      }
+      .post-button {
+        padding: 8px;
+        background-color: #313232;
+        color: #fff;
+        border: 10px;
+        width: 4em;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 10px;
+      }
+      .interactions{
+      padding: 8px 16px;
+      letter-spacing: 15px;
+      }
+      .switch-container {
+        display: flex;
+        display: none;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #313232;
+        padding-bottom: 5px;
+      }
+
+      .switch-button {
+        flex-grow: 1;
+        padding: 8px;
+        padding-top: 3px;
+        
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        letter-spacing: 2px;
+        margin-right: 5px;
+        font-size: 20px;
+      }
+
+      .switch-button:last-child {
+        margin-right: 0;
+      }
+
+      input[type="file"] {
+      display: none; /* Hides the default file input */
+      }
+      
+    .comment-box {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #313232;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 9000;
+    }
+
+    .comment-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+    
+    #commentarea {
+      font-family: Arial;
+      font-size: 0.9em;
+      width: 300px;
+      height: 200px;
+      padding: 10px;
+      border: 30px;
+    }
+
+    #commentsubmit {
+      height: 30px;
+      width: 100px;
+      border: 0px; 
+      background-color: #212232;
+    }
+
+
+    .share-box {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      flex-direction: column;
+      justify-content: center;    
+      height:100px;
+      transform: translate(-50%, -50%);
+      background-color: #313232;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 9000;
+    }
+    
+    #shareclose {
+      height: 30px;
+      width: 100px;
+      border: 0px; 
+      background-color: #212232;
+    }
+
+  </style>
+  <div class="logo-container">
+    <a href="/home">
+      <object data="/svg/app-logo.svg" type="image/svg+xml"></object>
+    </a>
+  </div>
+</head>
+
+
+<!-- ============================================================================================== BODY -->
+<body>
+<div class="login-container">
+    <div class="login-text">Sign in to get more access</div>
+    <a href="/login"><button class="login-button" type="button">Sign In</button></a>
+    </div>
+      
+        
+  <% for (key in data) { %>
+    <% var profile = data[key]; %>
+      <div class="post">
+        <div class="post-time"><%=profile['post_time']%></div>                    
+        <div style="display: flex; flex-direction: row; align-items:center;">
+          <img class="user-image" src="<%=profile['user_img']%>">
+          <span class="post-name"><%=profile['username']%></span>
+        </div>
+
+        <div class="post-content">
+            <p class="post-desc"><%=profile['post_description']%></p>
+        </div>
+          
+        <% if (profile['filetype'] == 'image') { %>
+          <img class="post-image" src="<%=profile['post_img']%>">
+        <% } %>
+
+        <% if (profile['filetype'] == 'video') { %>
+          <video class="post-video" controls>
+            <source src="<%=profile['post_img']%>" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>            
+        <% } %>
+
+        <!-- <div class="interactions">
+          <object class="heart-container" data="/svg/heart-icon.svg" type="image/svg+xml"></object>
+          <object class="comment-container" data="/svg/comment-icon.svg" type="image/svg+xml"></object>
+          <object class="repost-container" data="/svg/repost-icon.svg" type="image/svg+xml"></object>
+          <object class="share-container" data="/svg/share-icon.svg" type="image/svg+xml"></object>
+        </div>    -->
+    </div>
+  <% }; %>
+  <script src="/js/home-interaction.js"></script>
+</body>

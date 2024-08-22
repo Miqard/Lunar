@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>My Awesome Shape</title>
+  <desc>A simple example of a path element in SVG</desc>
+  <path id="myPathId" d="M 100,100 L 150,50 L 150,150 Z" fill="blue" stroke="black" stroke-width="3" />
+</svg>

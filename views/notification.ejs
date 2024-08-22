@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/js/check-login.js"></script>
+
+<style>
+.notification-preview {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      padding-bottom: 10px;
+      padding-left: 1em;
+      border-bottom: 1.5px solid #323333 ;
+}
+
+.notification-icon {
+      width: 40px;
+      height: auto;
+      margin-right: 10px;
+      /* overflow: hidden; */
+}
+
+    /* .user-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    } */
+
+.notification-details {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+}
+
+.description {
+      margin-top: 5px;
+}
+.logo-container {
+      position: fixed;
+      top: 20px;
+      left: 10rem;
+      z-index: 1000;
+}
+.logo {
+      width: 40px; /* Adjust the width of the logo */
+      height: 40px; /* Adjust the height of the logo */
+}
+
+</style>
+<div class="logo-container">
+  <a href="/home">
+    <object data="/svg/app-logo.svg" type="image/svg+xml"></object>
+  </a>
+  </div>
+</head>
+<body>
+  <div class="logout-container">
+    <a href="/login"></a>
+      <object style="pointer-events: none;" data="/svg/logout.svg" type="image/svg+xml"></object>
+    </a>
+  </div>
+  <header class="header">
+    
+    <nav class="header__nav">
+        <ul>
+          <li>
+            <a href="/home">
+              <object style="pointer-events: none;" data="/svg/home-icon.svg" type="image/svg+xml"></object>
+            </a>           
+            <a href="/search">
+              <object style="pointer-events: none;" data="/svg/search-icon.svg" type="image/svg+xml"></object>
+            </a>
+
+            <a id="msg-icon" href="/message">
+              <object style="pointer-events: none;" data="/svg/message-icon.svg" type="image/svg+xml"></object>
+            </a>
+
+            <a href="/notification">
+              <object style="pointer-events: none;" data="/svg/notif-icon.svg" type="image/svg+xml"></object>
+            </a>
+            
+            <a href="/profile">
+              <object style="pointer-events: none;" data="/svg/profile-icon.svg" type="image/svg+xml"></object>
+            </a>
+          </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="below-header">
+
+  <% for (key in data) { %>
+    <% var notif = data[key]; %>
+    <div class="notification-preview">   
+      <div class="notification-icon">
+        <% if (notif['type'] == 'like') { %>
+          <img src="/svg/heart-icon.svg">
+        <% } %>
+  
+        <% if (notif['type'] == 'message') { %>
+          <img src="/svg/message-icon.svg">
+        <% } %>
+      </div>
+      <div class="notification-details">
+        <div class="description"><%=notif['text']%></div>
+      </div>  
+    </div>
+  <% }; %>
+  
+  <% if (data.length == 0) { %>
+    <div class="notification-details">
+      <div class="description">You have no notification yet.</div>
+    </div>  
+    <% }; %>
+</div>
+</body>
+</html>

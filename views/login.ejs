@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    .container {
+      border-right: none;
+      border-left: none;
+      border-bottom: none;
+    }
+    .login-container {
+      width: 300px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color:  #79848f;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <div class="input-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" placeholder="Enter your username">
+    </div>
+    <div class="input-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter your password">
+    </div>
+    <a><button style="margin:20px;width:80px;font-size: 1.2em;" onclick="login()">Login</button></a>
+    <p class="login-link">Don't have an account? <a style="font-weight: bold; color: skyblue" href="/register">Sign Up in Here!</a></p>
+  </div>
+
+  <script>
+    let loginData = {}
+    let server    = {}
+    
+    function login() {
+      let username = document.getElementById('username').value;
+      let password = document.getElementById('password').value;
+      console.log("login button pressed");
+      // check if username is empty
+      if (username.length == 0) {
+        alert("Username must not be empty!");
+        return;
+      }
+
+      // check if username is empty
+      if (password.length == 0) {
+        alert ("password must not be empty");
+        return;
+      }
+
+      loginData.username = username;
+      loginData.password = password;
+
+      // Send a POST request to the server with the provided credentials
+      fetch('/user-login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginData)
+      }).
+      then(async function(response) {
+        const result = await response.json();
+        server.responseJson = result.message;
+        server.status       = response.status;
+        console.log(server.responseJson);
+
+        if (server.status == 409) {
+          alert(server.responseJson);
+          return;
+        }
+
+        if (server.status == 200) {
+          window.location = './home';
+          return;
+        }
+
+        alert("something wrong happened, I can not figure out how");
+      });
+    }
+  </script>
+</body>
+</html>
